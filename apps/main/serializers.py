@@ -20,7 +20,7 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 		model = Author
 		fields = ('name',)
 
-		
+
 class NoticeSerializer(serializers.ModelSerializer):
 
 	class Meta:
@@ -34,7 +34,7 @@ class NoticeDetailSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Notice
-
+		
 class CommentSerializer(serializers.ModelSerializer):
 
 	user = UserSerializer()
