@@ -20,6 +20,7 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 		model = Author
 		fields = ('name',)
 
+		
 class NoticeSerializer(serializers.ModelSerializer):
 
 	class Meta:
