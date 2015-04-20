@@ -28,7 +28,19 @@ class CommentViewSet(viewsets.ModelViewSet):
 	queryset = Comment.objects.all()
 	serializer_class = CommentSerializer
 
+	def list(self, request, noticia_pk):
+		comment = Comment.objects.filter(notice__id = noticia_pk)
+		notSer = CommentSerializer(comment, many=True, context={'request': request})
+		return Response(notSer.data)
+
+		
+	def retrieve(self, request, noticia_pk, pk):
+		comment = get_object_or_404(Comment, pk=pk)
+		notSer = CommentSerializer(comment, context={'request': request})
+		return Response(notSer.data)
+
 	def create(self, request, noticia_pk):
+		print noticia_pk
 		notice = Notice.objects.get(pk = noticia_pk)
 		Comment.objects.create(user = request.user, comment = request.POST['comment'], notice=notice)
 		return Response(status=200)
