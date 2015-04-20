@@ -27,3 +27,8 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 	queryset = Comment.objects.all()
 	serializer_class = CommentSerializer
+
+	def create(self, request, noticia_pk):
+		notice = Notice.objects.get(pk = noticia_pk)
+		Comment.objects.create(user = request.user, comment = request.POST['comment'], notice=notice)
+		return Response(status=200)

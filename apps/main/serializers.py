@@ -23,9 +23,11 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 
 class NoticeSerializer(serializers.ModelSerializer):
 
+	category = CategorySerializer()
+
 	class Meta:
 		model = Notice
-		fields = ('id', 'title', 'resumen', 'main', 'image')
+		fields = ('id', 'title', 'resumen', 'main', 'image', 'category')
 
 class NoticeDetailSerializer(serializers.ModelSerializer):
 
@@ -34,7 +36,7 @@ class NoticeDetailSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Notice
-		
+
 class CommentSerializer(serializers.ModelSerializer):
 
 	user = UserSerializer()
